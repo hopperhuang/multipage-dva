@@ -1,18 +1,19 @@
-const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-const postcssPxtorem = require('postcss-pxtorem')
-const webpack = require('webpack')
-const getFiles = require('./getFile')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const postcssPxtorem = require('postcss-pxtorem');
+const webpack = require('webpack');
+const getFiles = require('./getFile');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const files = getFiles()
-const fileEntrys = {}
-const _plugin = []
-files.forEach(function (file) {
+const files = getFiles();
+const fileEntrys = {};
+// eslint-disable-next-line
+const _plugin = [];
+files.forEach((file) => {
   // 处理入口
-  fileEntrys[file[0]] = file[1]
+  fileEntrys[file[0]] = file[1];
   // 处理html模板
   _plugin.push(new HtmlWebpackPlugin({ // html webpack plugin 配置
     filename: `./${file[0]}/index.html`, // 生成的html存放路径，相对于path
@@ -22,15 +23,15 @@ files.forEach(function (file) {
     chunks: [file[0]], // 需要引入的chunk，不配置就会引入所有页面的资源
     links: [
       // 加入reset.css
-      '/assets/css/reset.css'
+      '/assets/css/reset.css',
     ],
     scripts: [
       // 引入flex
-      '/assets/js/flex.js'
-    ]
-  }))
-})
-const entry = { ...fileEntrys }
+      '/assets/js/flex.js',
+    ],
+  }));
+});
+const entry = { ...fileEntrys };
 const plugins = [new webpack.NamedModulesPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new CleanWebpackPlugin(['dist']),
@@ -38,14 +39,14 @@ const plugins = [new webpack.NamedModulesPlugin(),
     from: './src/assets/reset.css',
     // 相对路径，相对于dist文件夹
     to: './assets/css',
-    toType: 'dir'
+    toType: 'dir',
   }, {
     from: './src/assets/flex.js',
     // 相对路径，相对于dist文件夹
     to: './assets/js',
-    toType: 'dir'
+    toType: 'dir',
   }]),
-  ..._plugin]
+  ..._plugin];
 
 module.exports = {
   entry,
@@ -53,7 +54,7 @@ module.exports = {
     filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
     // 打包上传时，这里应该填写cdn路径
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -65,8 +66,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: false,
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -75,8 +76,8 @@ module.exports = {
                 autoprefixer({
                   browsers: [
                     '> 1%',
-                    'last 2 versions'
-                  ]
+                    'last 2 versions',
+                  ],
                 }),
                 postcssPxtorem({
                   rootValue: 37.5,
@@ -85,25 +86,25 @@ module.exports = {
                   selectorBlackList: [],
                   replace: true,
                   mediaQuery: false,
-                  minPixelValue: 2
-                })
-              ]
-            }
-          }
-        ]
+                  minPixelValue: 2,
+                }),
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
         use: [
           {
-            loader: 'style-loader' // creates style nodes from JS strings
+            loader: 'style-loader', // creates style nodes from JS strings
           },
           {
             loader: 'css-loader', // translates CSS into CommonJS
             options: {
               modules: false,
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
             loader: 'postcss-loader',
@@ -112,8 +113,8 @@ module.exports = {
                 autoprefixer({
                   browsers: [
                     '> 1%',
-                    'last 2 versions'
-                  ]
+                    'last 2 versions',
+                  ],
                 }),
                 postcssPxtorem({
                   rootValue: 37.5,
@@ -122,14 +123,14 @@ module.exports = {
                   selectorBlackList: [],
                   replace: true,
                   mediaQuery: false,
-                  minPixelValue: 2
-                })
-              ]
-            }
+                  minPixelValue: 2,
+                }),
+              ],
+            },
           },
           {
-            loader: 'less-loader' // compiles Less to CSS
-          }]
+            loader: 'less-loader', // compiles Less to CSS
+          }],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -138,24 +139,24 @@ module.exports = {
             loader: 'file-loader',
             options: {
               // 将图片生成到dist/assets文件夹
-              name: 'assets/img/[name].[ext]'
-            }
-          }
-        ]
+              name: 'assets/img/[name].[ext]',
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.html$/,
         use: {
-          loader: 'html-loader'
-        }
+          loader: 'html-loader',
+        },
       },
-      { test: /\.ejs$/, loader: 'ejs-loader' }
-    ]
+      { test: /\.ejs$/, loader: 'ejs-loader' },
+    ],
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -164,7 +165,7 @@ module.exports = {
     port: 9000,
     hot: true,
     // 打开页面
-    openPage: 'module_one/index.html'
+    openPage: 'module_one/index.html',
   },
-  plugins
-}
+  plugins,
+};
