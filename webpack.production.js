@@ -18,7 +18,8 @@ const fileEntrys = {};
 const _plugin = [];
 files.forEach((file) => {
   // 处理入口
-  fileEntrys[file[0]] = ['babel-polyfill', file[1]];
+  // fileEntrys[file[0]] = ['babel-polyfill', file[1]];
+  fileEntrys[file[0]] = file[1];
   // 处理html模板
   _plugin.push(new HtmlWebpackPlugin({ // html webpack plugin配置
     filename: `./${file[0]}/index.html`, // 生成的html存放路径，相对于path
