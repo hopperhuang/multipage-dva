@@ -9,8 +9,8 @@ export default {
   reducers: {
     addOne(state) {
       const newCount = state.count + 1;
-    //   const s = { ...state };
-    //   console.log(s);
+      const s = { ...state };
+      console.log(s);
       return Object.assign({}, state, { count: newCount });
     //   return state;
     },

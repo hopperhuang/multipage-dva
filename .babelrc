@@ -4,13 +4,14 @@
       }],
       "react"],
     "plugins": [
+      "transform-object-rest-spread",
+      "transform-es2015-spread",
       "transform-runtime",
       ["module-resolver",{
         "alias": {
           "dva": "dva-no-router"
         }
-      }],
-      "transform-es2015-spread"
+      }]
     ],
     "env": {
         "development": {
