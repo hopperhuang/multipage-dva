@@ -4,7 +4,6 @@
     color: red;
     height: 200px;
 }
-.module_one_container img {
-    width: 100%;
-    height: auto;
+.module_one_container button {
+    border: 2px solid black;
 }

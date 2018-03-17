@@ -1,12 +1,16 @@
 {
-    "presets": ["env", "react"],
+    "presets": [["env", { 
+      "debug": true
+      }],
+      "react"],
     "plugins": [
       "transform-runtime",
       ["module-resolver",{
         "alias": {
           "dva": "dva-no-router"
         }
-      }]
+      }],
+      "transform-es2015-spread"
     ],
     "env": {
         "development": {
