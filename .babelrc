@@ -1,6 +1,13 @@
 {
     "presets": ["env", "react"],
-    "plugins": ["transform-runtime"],
+    "plugins": [
+      "transform-runtime",
+      ["module-resolver",{
+        "alias": {
+          "dva": "dva-no-router"
+        }
+      }]
+    ],
     "env": {
         "development": {
           "plugins": [

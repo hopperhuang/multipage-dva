@@ -1,4 +1,4 @@
-import dva from 'dva-no-router';
+import dva from 'dva';
 import React from 'react';
 
 

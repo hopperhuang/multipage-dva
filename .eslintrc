@@ -1,6 +1,16 @@
 {
     "parser": "babel-eslint",
     "extends": "airbnb",
+    "settings": {
+      "import/resolver": {
+        "babel-module": {
+          "alias": {
+            "test": "./test",
+            "underscore": "lodash"
+          }
+        }
+      }
+    },
     "rules": {
       "arrow-body-style": [0],
       "consistent-return": [0],
