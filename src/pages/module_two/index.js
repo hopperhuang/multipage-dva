@@ -2,7 +2,7 @@ import dva from 'dva-no-router';
 import React from 'react';
 
 // 引入我们需要的css
-import './index.less';
+import styles from './index.less';
 
 
 const app = dva();
@@ -14,6 +14,9 @@ app.model({
   },
 });
 
-app.router(() => (<div>这时一个dva app</div>));
+app.router(() => (<div className={styles.module_two_container} >
+这时一个dva app
+<a href="/module_one/index.html" >got to module one</a>
+</div>));
 
 app.start('#root');

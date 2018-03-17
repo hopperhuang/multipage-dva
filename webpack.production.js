@@ -74,7 +74,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: extractCSS.extract([
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -103,7 +109,13 @@ module.exports = {
       {
         test: /\.less$/,
         use: extractLESS.extract([
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
