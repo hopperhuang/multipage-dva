@@ -16,6 +16,15 @@ const files = getFiles();
 const fileEntrys = {};
 // eslint-disable-next-line
 const _plugin = [];
+
+
+// 生成公共库的名字
+let vendorsName = 'vendors';
+files.forEach((file) => {
+  const moduleName = file[0];
+  vendorsName += `~${moduleName}`;
+});
+
 files.forEach((file) => {
   // 处理入口
   // fileEntrys[file[0]] = ['babel-polyfill', file[1]];
@@ -26,7 +35,7 @@ files.forEach((file) => {
     template: `./src/pages/${file[0]}/index.ejs`,
     inject: 'body', // js插入的位置，true/'head'/'body'/false
     hash: false, // 为静态资源生成hash值
-    chunks: [file[0], 'manifest'], // 需要引入的chunk，不配置就会引入所有页面的资源, 一定要引入manifest
+    chunks: [vendorsName, file[0], 'manifest'], // 需要引入的chunk，不配置就会引入所有页面的资源, 一定要引入manifest 和 vendors
     minify: { // 压缩HTML文件
       removeComments: true, // 移除HTML中的注释
       collapseWhitespace: false, // 删除空白符与换行符
@@ -172,6 +181,10 @@ module.exports = {
   optimization: { // 分离运行时代码
     runtimeChunk: {
       name: 'manifest',
+    },
+    // 参考: https://github.com/webpack/webpack/issues/6357
+    splitChunks: {
+      chunks: 'all',
     },
   },
   plugins,
