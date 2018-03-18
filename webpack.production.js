@@ -47,6 +47,8 @@ files.forEach((file) => {
     scripts: [
       // 引入flex
       '/assets/js/flex.js',
+      // 引入react
+      '/assets/js/react.production.min.js',
     ],
   }));
 });
@@ -63,6 +65,11 @@ const plugins = [
     toType: 'dir',
   }, {
     from: './src/assets/flex.js',
+    // 相对路径，相对于dist文件夹
+    to: './assets/js',
+    toType: 'dir',
+  }, {
+    from: './src/assets/react.production.min.js',
     // 相对路径，相对于dist文件夹
     to: './assets/js',
     toType: 'dir',
@@ -178,6 +185,9 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
+  externals: { // 将react分离， 不打包通过静态资源的方式引入
+    react: 'React',
+  },
   optimization: { // 分离运行时代码
     runtimeChunk: {
       name: 'manifest',
