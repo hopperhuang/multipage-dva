@@ -182,6 +182,13 @@ module.exports = {
         },
       },
       { test: /\.ejs$/, loader: 'ejs-loader' },
+      {
+        test: /\.(svg)$/i,
+        loader: 'svg-sprite-loader',
+        include: [
+          path.resolve(__dirname, 'src'),  // 自己私人的 svg 存放目录
+        ],
+      },
     ],
   },
   devtool: 'source-map',
