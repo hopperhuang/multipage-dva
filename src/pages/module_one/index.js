@@ -17,9 +17,9 @@ app.model(model);
 function Counter(props) {
   return (
     <div className={styles.module_one_container} >
-      <button type="button" onClick={() => { props.dispatch({ type: 'module_one/add' }); }} >+++</button>
+      <Button type="button" onClick={() => { props.dispatch({ type: 'module_one/add' }); }} >+++</Button>
       {props.model.count}
-      <button type="button" onClick={() => { props.dispatch({ type: 'module_one/minus' }); }} >---</button>
+      <Button type="button" onClick={() => { props.dispatch({ type: 'module_one/minus' }); }} >---</Button>
       <div className={styles.button} >
         <Button type="primary" >start!!</Button>
       </div>

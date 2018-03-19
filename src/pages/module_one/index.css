@@ -1,6 +1,6 @@
 .module_one_container {
     /* display: flex; */
-    width: 375px;
+    width: 750px;
     color: red;
     height: 200px;
 }
@@ -8,5 +8,8 @@
     border: 2px solid black;
 }
 .button {
-    width: 187.5px;
+    width: 375px;
+}
+.button :global(.am-button) {
+    font-size: 40px;
 }

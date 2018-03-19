@@ -46,7 +46,8 @@ files.forEach((file) => {
       '/assets/css/reset.css',
     ],
     scripts: [
-      // 引入flex
+      // 引入flex 和 hd
+      'https://gw.alipayobjects.com/os/rmsportal/uDTmsEBmTUVrpmCBozbm.js',
       '/assets/js/flex.js',
       // 引入fastclick
       'https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js',
@@ -121,7 +122,7 @@ module.exports = {
                   ],
                 }),
                 postcssPxtorem({
-                  rootValue: 37.5,
+                  rootValue: 100,
                   unitPrecision: 5,
                   propList: ['*'],
                   selectorBlackList: [],
@@ -155,7 +156,7 @@ module.exports = {
                   ],
                 }),
                 postcssPxtorem({
-                  rootValue: 37.5,
+                  rootValue: 50,
                   unitPrecision: 5,
                   propList: ['*'],
                   selectorBlackList: [],
@@ -190,7 +191,7 @@ module.exports = {
                   ],
                 }),
                 postcssPxtorem({
-                  rootValue: 37.5,
+                  rootValue: 100,
                   unitPrecision: 5,
                   propList: ['*'],
                   selectorBlackList: [],
