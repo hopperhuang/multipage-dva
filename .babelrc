@@ -7,6 +7,7 @@
       "transform-object-rest-spread",
       "transform-es2015-spread",
       "transform-runtime",
+      ["import", { "libraryName": "antd-mobile", "style": "css" }],
       ["module-resolver",{
         "alias": {
           "dva": "dva-no-router"

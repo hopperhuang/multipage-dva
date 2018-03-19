@@ -1,4 +1,5 @@
 import dva, { connect } from 'dva';
+import { Button } from 'antd-mobile';
 import React from 'react';
 
 
@@ -19,6 +20,9 @@ function Counter(props) {
       <button type="button" onClick={() => { props.dispatch({ type: 'module_one/add' }); }} >+++</button>
       {props.model.count}
       <button type="button" onClick={() => { props.dispatch({ type: 'module_one/minus' }); }} >---</button>
+      <div className={styles.button} >
+        <Button type="primary" >start!!</Button>
+      </div>
     </div>
   );
 }

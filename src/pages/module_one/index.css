@@ -1,9 +1,12 @@
 .module_one_container {
     /* display: flex; */
-    width: 100px;
+    width: 375px;
     color: red;
     height: 200px;
 }
 .module_one_container button {
     border: 2px solid black;
+}
+.button {
+    width: 187.5px;
 }

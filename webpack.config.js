@@ -29,6 +29,10 @@ files.forEach((file) => {
     scripts: [
       // 引入flex
       '/assets/js/flex.js',
+      // 引入fastclick
+      'https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js',
+      // 引入fastclick listener
+      '/assets/js/fsc.js',
     ],
   }));
 });
@@ -43,6 +47,11 @@ const plugins = [new webpack.NamedModulesPlugin(),
     toType: 'dir',
   }, {
     from: './src/assets/flex.js',
+    // 相对路径，相对于dist文件夹
+    to: './assets/js',
+    toType: 'dir',
+  }, {
+    from: './src/assets/fsc.js',
     // 相对路径，相对于dist文件夹
     to: './assets/js',
     toType: 'dir',
@@ -61,6 +70,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
+        // 不编译antd-mobile样式
+        exclude: /node_modules/,
         use: [
           'style-loader',
           {
@@ -69,6 +80,42 @@ module.exports = {
               modules: true,
               importLoaders: 1,
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '> 1%',
+                    'last 2 versions',
+                  ],
+                }),
+                postcssPxtorem({
+                  rootValue: 37.5,
+                  unitPrecision: 5,
+                  propList: ['*'],
+                  selectorBlackList: [],
+                  replace: true,
+                  mediaQuery: false,
+                  minPixelValue: 2,
+                }),
+              ],
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        // 只编译antd-mobile样式
+        include: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
             },
           },
           {

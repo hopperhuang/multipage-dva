@@ -10,6 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // 创建extract多个实例, 将抽离的文件放到assets/css目录下,contenthash命名，防止内容更新后，css文件却被304命中
 const extractCSS = new ExtractTextPlugin('assets/css/[contenthash]-one.css');
+// const extractAntd = new ExtractTextPlugin('assets/css/antd-mobile.css');
 const extractLESS = new ExtractTextPlugin('assets/css/[contenthash]-two.css');
 
 const files = getFiles();
@@ -47,6 +48,10 @@ files.forEach((file) => {
     scripts: [
       // 引入flex
       '/assets/js/flex.js',
+      // 引入fastclick
+      'https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js',
+      // 引入fastclick listener
+      '/assets/js/fsc.js',
       // 引入react
       '/assets/js/react.production.min.js',
     ],
@@ -54,6 +59,7 @@ files.forEach((file) => {
 });
 const entry = { ...fileEntrys };
 const plugins = [
+  // extractAntd,
   extractCSS,
   extractLESS,
   new webpack.HashedModuleIdsPlugin(),
@@ -70,6 +76,11 @@ const plugins = [
     toType: 'dir',
   }, {
     from: './src/assets/react.production.min.js',
+    // 相对路径，相对于dist文件夹
+    to: './assets/js',
+    toType: 'dir',
+  }, {
+    from: './src/assets/fsc.js',
     // 相对路径，相对于dist文件夹
     to: './assets/js',
     toType: 'dir',
@@ -90,12 +101,47 @@ module.exports = {
       // 抽离css到head
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: extractCSS.extract([
           {
             loader: 'css-loader',
             options: {
               module: true,
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers: [
+                    '> 1%',
+                    'last 2 versions',
+                  ],
+                }),
+                postcssPxtorem({
+                  rootValue: 37.5,
+                  unitPrecision: 5,
+                  propList: ['*'],
+                  selectorBlackList: [],
+                  replace: true,
+                  mediaQuery: false,
+                  minPixelValue: 2,
+                }),
+              ],
+            },
+          },
+        ]),
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: extractCSS.extract([
+          {
+            loader: 'css-loader',
+            options: {
+              module: false,
             },
           },
           {
