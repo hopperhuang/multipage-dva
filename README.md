@@ -30,33 +30,27 @@ Serve
 $ npm run serve
 ```
 
-import pictures
-
-```
-// index.ejs
-<img src="${ require('../../assets/panghu.jpg') }">
-```
 
 import css/less
 
 ```
 // index.js
-import './index.css'
+import  style from './index.css'
+
+function() {
+    return (<div className={styles.container} >content</div>)
+}
 ```
 
-hotRealoadHtml
 
-```
-// index.js
-require('./index.ejs') // you should remove this statement to minimize to package's size when you build your project
-```
+
 
 
 Feature:
-1. hot reload html
-2. auto link flex.js, rem = 37.5
-3. import jquery for development
-4. package css style into static css file when build
+1. auto link flex.js, rem = 37.5
+2. import jquery for development
+3. package css style into static css file when build
+4. use css module
 
 structure:
  ```
