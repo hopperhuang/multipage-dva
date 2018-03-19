@@ -30,33 +30,29 @@ Serve
 $ npm run serve
 ```
 
-import pictures
-
-```
-// index.ejs
-<img src="${ require('../../assets/panghu.jpg') }">
-```
 
 import css/less
 
 ```
 // index.js
-import './index.css'
+import  styles from './index.css'
 ```
 
-hotRealoadHtml
+antd-mobile
 
 ```
 // index.js
-require('./index.ejs') // you should remove this statement to minimize to package's size when you build your project
+import { Button } from 'antd-mobile';
 ```
 
 
 Feature:
-1. hot reload html
-2. auto link flex.js, rem = 37.5
-3. import jquery for development
+1. auto link flex.js, rem = 37.5
+2. import dva fro development
+3. import antd-mobile for development
 4. package css style into static css file when build
+5. split common use modules to vendor
+6. chunks name generate by contenthash, opimize cache
 
 structure:
  ```
