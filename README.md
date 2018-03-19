@@ -48,7 +48,7 @@ function() {
 
 Feature:
 1. auto link flex.js, rem = 37.5
-2. import jquery for development
+2. import dva from development
 3. package css style into static css file when build
 4. use css module
 
