@@ -9,8 +9,8 @@ const getFiles = require('./getFile');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // 创建extract多个实例, 将抽离的文件放到assets/css目录下,contenthash命名，防止内容更新后，css文件却被304命中
-const extractCSS = new ExtractTextPlugin('assets/css/[contenthash]-one.css');
-const extractLESS = new ExtractTextPlugin('assets/css/[contenthash]-two.css');
+const extractCSS = new ExtractTextPlugin('assets/css/[md5:contenthash:hex:20]]-one.css');
+const extractLESS = new ExtractTextPlugin('assets/css/[md5:contenthash:hex:20]]-two.css');
 
 const files = getFiles();
 const fileEntrys = {};
